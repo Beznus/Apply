@@ -23,6 +23,24 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'will_paginate'
+gem 'devise'
+gem 'paperclip'
+gem 'american_date'
+gem 'simple_form'
+
+#bootstrap and dependent gems
+gem 'therubyracer'
+gem 'less-rails'
+gem 'twitter-bootstrap-rails'
+gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
+gem 'momentjs-rails', '~> 2.9', :github => 'derekprior/momentjs-rails'
+# Use ActiveModel has_secure_password
+# bel-successgem 'bcrypt', '~> 3.1.7'
+
+gem "simple_calendar", "~> 1.1.0"
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
