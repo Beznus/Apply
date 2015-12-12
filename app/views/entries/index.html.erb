@@ -5,10 +5,10 @@
 <table class="table table-striped table-hover">
   <thead>
     <tr>
-      <th>Posting</th>
-      <th>Published</th>
-      <th>Title</th>
-      <th>Author</th>
+      <th><%= sortable "posting_id", "Posting" %></th>
+      <th><%= sortable "published", "Published" %></th>
+      <th><%= sortable "title", "Title"%></th>
+      <th><%= sortable "authors.name", "Author" %></th>
       <th colspan="2"></th>
     </tr>
   </thead>
