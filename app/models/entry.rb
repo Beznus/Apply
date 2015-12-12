@@ -11,4 +11,10 @@ class Entry < ActiveRecord::Base
          author_id: Author.import_author(entry_data.css("author")))
     end
   end
+
+  self.per_page = 30
+ 
+  def self.search(collection, text)
+    entries = collection.where("title LIKE '%#{text}%' OR content LIKE '%#{text}%'")
+  end
 end

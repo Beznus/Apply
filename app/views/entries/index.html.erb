@@ -1,7 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <h1>All Job Postings</h1>
+<%= simple_form_for 'search', url: entries_path, method: :get do |f| %>
+  <%= f.input 'text', label: false, input_html: {placeholder: "Search posting title and content", value: @text} %>
+  <%= f.input 'author_id', label: false, as: :select, collection: Author.all.map{|a| [a.name, a.id]},
+      include_blank:"Search by Department", selected: @author_id %>
+  <%= f.submit "Search" %>
+<% end %>
 
+<%= will_paginate(@entries) %>
 <table class="table table-striped table-hover">
   <thead>
     <tr>
@@ -26,6 +33,5 @@
     <% end %>
   </tbody>
 </table>
-
+<%= will_paginate(@entries) %>
 <br>
-
