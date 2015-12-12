@@ -1,4 +1,6 @@
 class Entry < ActiveRecord::Base
+  belongs_to :author
+
 
   def self.import_entries(file)
     file.css("entry").each do |entry_data|

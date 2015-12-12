@@ -1,17 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Entries</h1>
+<h1>All Job Postings</h1>
 
-<table>
+<table class="table table-striped table-hover">
   <thead>
     <tr>
       <th>Posting</th>
       <th>Published</th>
-      <th>Link</th>
       <th>Title</th>
-      <th>Content</th>
       <th>Author</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -19,14 +17,11 @@
     <% @entries.each do |entry| %>
       <tr>
         <td><%= entry.posting_id %></td>
-        <td><%= entry.published %></td>
-        <td><%= entry.link %></td>
+        <td><%= entry.published.strftime("%d/%m/%Y") %></td>
         <td><%= entry.title %></td>
-        <td><%= entry.content %></td>
-        <td><%= entry.author_id %></td>
-        <td><%= link_to 'Show', entry %></td>
-        <td><%= link_to 'Edit', edit_entry_path(entry) %></td>
-        <td><%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= entry.author.name %></td>
+        <td><%= link_to 'Details', entry_path(id: entry.id) %></td>
+        <td><%= link_to 'Original Posting', entry.link %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +29,3 @@
 
 <br>
 
-<%= link_to 'New Entry', new_entry_path %>
