@@ -1,0 +1,5 @@
+<%= simple_form_for @admin_user do |f| %>
+  <%= f.simple_fields_for @user_department do |ff| %>
+    $('.departments').append("<%= escape_javascript(render 'admin/users/department_fields', ff: ff) %>");
+  <% end %>
+<% end %>

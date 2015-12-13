@@ -3,8 +3,13 @@ Rails.application.routes.draw do
   root "static_pages#home"
   resources :authors
   resources :entries
+  resources :user_applications
   namespace :admin do
-    resources :users
-    resources :applications
+    resources :users do
+      member do
+        get :new_user_department
+      end
+    end
+    resources :user_applications
   end
 end

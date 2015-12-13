@@ -1,5 +1,6 @@
 class Entry < ActiveRecord::Base
   belongs_to :author
+  has_many :user_applications
 
   def self.import_entries(file)
     file.css("entry").each do |entry_data|

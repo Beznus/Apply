@@ -1,5 +1,7 @@
 class Admin::UsersController < ApplicationController
-  before_action :set_admin_user, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :require_admin_or_department
+  before_action :set_admin_user, only: [:show, :edit, :update, :destroy, :new_user_department]
 
   # GET /admin/users
   # GET /admin/users.json
@@ -19,6 +21,13 @@ class Admin::UsersController < ApplicationController
 
   # GET /admin/users/1/edit
   def edit
+  end
+
+  def new_user_department
+    @user_department = UserDepartment.new(user_id: @admin_user.id)
+    respond_to do |format|
+      format.json
+    end
   end
 
   # POST /admin/users
@@ -69,6 +78,6 @@ class Admin::UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_user_params
-      params.require(:user).permit(:email, :user_type)
+      params.require(:user).permit(:email, :user_type, user_departments_attributes: [:id, :user_id, :author_id, :_destroy])
     end
 end

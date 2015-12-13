@@ -26,7 +26,11 @@
 
 <p>
   <strong>Author:</strong>
-  <%= @entry.author_id %>
+  <%= @entry.author.name %>
+</p>
+
+<p>
+<%= link_to "Apply", new_user_application_path(entry_id: @entry.id ), class: "btn btn-primary" %>
 </p>
 
 <%= link_to 'Back', entries_path %>

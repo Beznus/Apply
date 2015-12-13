@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Your Application For <%= link_to @user_application.entry.title, entry_path(id: @user_application.entry.id) %></h1>
+
+<p><b>Status: </b><%= @user_application.status %></p>
+
+<h4>Application Information</h4>
+
+<p><b>Statement of Intent: </b><%= @user_application.statement %></p>
+
+<p><b>Attached Cover Letter: </b>
+  <%= link_to File.basename(@user_application.cover_letter.url, 
+      File.extname(@user_application.cover_letter.url)), @user_application.cover_letter.url %></p>
+
+<p><b>Attached Resume: </b>
+  <%= link_to File.basename(@user_application.resume.url, File.extname(@user_application.resume.url)),
+      @user_application.resume.url %></p>
+
+<%= link_to 'Back', user_applications_path %>

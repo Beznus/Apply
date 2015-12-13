@@ -4,11 +4,25 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :user_departments
+  has_many :admin_applications, through: :departments, source: "user_applications"
   has_many :departments, through: :user_departments 
+  has_many :user_applications
+
+  accepts_nested_attributes_for :user_departments, allow_destroy: true
 
   USER_TYPES = %w[admin department applicant]
   
   def admin?
     self.user_type == "admin"
+  end
+
+  def permitted_applications
+    if self.user_type == "admin"
+      return UserApplication.all
+    elsif self.user_type == "departments" 
+      return self.admin_applications
+    else
+      return nil
+    end
   end
 end

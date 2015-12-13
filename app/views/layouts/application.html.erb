@@ -31,11 +31,11 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><%= link_to "Edit Account Details", edit_user_registration_path %></li>
-            <li><a href="#">My Applications</a></li>
+            <li><%= link_to "My Applications", user_applications_path %></li>
             <% if current_user.admin? %>
               <li role="separator" class="divider"></li>
               <li><%= link_to "Manage Users", admin_users_path %></li>
-              <li><a href="#">Manage Applications</a></li>
+              <li><%= link_to "Manage Applications", admin_user_applications_path %></li>
              <% end %>
           </ul>
         </li>
@@ -47,6 +47,7 @@
   </div><!-- /.container-fluid -->
 </nav>
   <div class="container">
+    <p id="notice"><%= notice %></p>
     <%= yield %>
   </div>
 </body>

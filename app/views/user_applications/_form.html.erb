@@ -1,0 +1,16 @@
+<%= simple_form_for(@user_application) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+    <%= f.input :entry_id, as: :hidden, input_html: { value: @entry.id } %>
+    <%= f.input :statement, label: "Introduction", input_html: { 
+        placeholder: "Use this space to tell us why you are a good fit for this position" } %>
+    <%= f.input :cover_letter, as: :file %>
+    <%= f.input :resume, as: :file %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -1,0 +1,13 @@
+<%= simple_form_for(@admin_user_application, url: admin_user_application_path(id: @admin_user_application.id,
+    entry_id: @admin_user_application.entry.id), method: :patch) do |f| %>
+  <%= f.error_notification %>
+  <p>view application here - <%= link_to "Application", user_application_path(id: @admin_user_application.id,
+                                  entry_id: @admin_user_application.entry.id) %></p>
+  <div class="form-inputs">
+    <%= f.input :status, as: :select, collection: UserApplication::APPLICATION_STATUSES, include_blank: false %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

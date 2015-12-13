@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Manage Applications</h1>
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Entry Title</th>
+      <th>User Email</th>
+      <th>Application Status</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_user_applications.each do |admin_user_application| %>
+      <tr>
+        <td><%= admin_user_application.entry.title %></td>
+        <td><%= admin_user_application.user.email %></td>
+        <td><%= admin_user_application.status %></td>
+        <td><%= link_to 'Application Info', admin_user_application_path(id: admin_user_application.id) %></td>
+        <td><%= link_to 'Edit', edit_admin_user_application_path(id: admin_user_application.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

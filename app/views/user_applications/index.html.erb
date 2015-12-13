@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>My Applications</h1>
+
+<% if @user_applications.count == 0 %>
+  <p class="user-notice">You currently do not have any open applications</p>
+<% end %>
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Posting Name</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_applications.each do |application| %>
+      <tr>
+        <td><%= application.entry.title %></td>
+        <td><%= application.status %></td>
+        <td><%= link_to 'Show', user_application_path(id: application.id, entry_id: application.entry.id) %></td>
+        <td><%= link_to 'Destroy', user_application_path(id: application.id, entry_id: application.entry.id),
+                 method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

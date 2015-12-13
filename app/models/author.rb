@@ -1,5 +1,6 @@
 class Author < ActiveRecord::Base
   has_many :entries
+  has_many :user_applications, through: :entries
   has_many :user_departments
   has_many :users, through: :user_departments
 
