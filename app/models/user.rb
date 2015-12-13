@@ -7,4 +7,8 @@ class User < ActiveRecord::Base
   has_many :departments, through: :user_departments 
 
   USER_TYPES = %w[admin department applicant]
+  
+  def admin?
+    self.user_type == "admin"
+  end
 end
