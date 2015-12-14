@@ -36,9 +36,12 @@
               <li role="separator" class="divider"></li>
               <li><%= link_to "Manage Users", admin_users_path %></li>
               <li><%= link_to "Manage Applications", admin_user_applications_path %></li>
-             <% end %>
-             <li role="separator" class="divider"></li>
-             <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+            <% elsif current_user.department? %>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to "Manage Applications", admin_user_applications_path %></li>
+            <% end %>
+            <li role="separator" class="divider"></li>
+            <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
           </ul>
         </li>
         <% else %>

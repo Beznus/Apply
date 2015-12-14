@@ -11,4 +11,12 @@ class ApplicationController < ActionController::Base
         redirect_to root_path, notice: "Sorry, you do not have permission to view this page"
       end
     end
+  
+    def require_admin
+      if !user_signed_in?
+        redirect_to new_user_session_path
+      elsif !(current_user.user_type == "admin")
+        redirect_to root_path, notice: "Sorry, you do not have permission to view this page"
+      end
+    end
 end

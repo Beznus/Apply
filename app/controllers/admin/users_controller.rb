@@ -1,12 +1,12 @@
 class Admin::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :require_admin_or_department
+  before_action :require_admin
   before_action :set_admin_user, only: [:show, :edit, :update, :destroy, :new_user_department]
 
   # GET /admin/users
   # GET /admin/users.json
   def index
-    @admin_users = User.all
+    @admin_users = Admin::User.all
   end
 
   # GET /admin/users/1
@@ -16,13 +16,11 @@ class Admin::UsersController < ApplicationController
 
   # GET /admin/users/new
   def new
-    @admin_user = User.new
-    @path = admin_users_path
+    @admin_user = Admin::User.new
   end
 
   # GET /admin/users/1/edit
   def edit
-    @path = admin_user_path(id: @admin_user.id)
   end
 
   def new_user_department
@@ -40,8 +38,7 @@ class Admin::UsersController < ApplicationController
   # POST /admin/users
   # POST /admin/users.json
   def create
-    @admin_user = User.new(admin_user_params)
-    @path = admin_users_path
+    @admin_user = Admin::User.new(admin_user_params)
  
     if @admin_user.password.blank?
       secure_password = @admin_user.generate_password 
@@ -63,6 +60,10 @@ class Admin::UsersController < ApplicationController
   # PATCH/PUT /admin/users/1
   # PATCH/PUT /admin/users/1.json
   def update
+    if params[:admin_user][:password].blank?
+      params[:admin_user].delete :password
+      params[:admin_user].delete :password_confirmation
+    end  
     respond_to do |format|
       if @admin_user.update(admin_user_params)
         format.html { redirect_to admin_users_path, notice: 'User was successfully updated.' }
@@ -87,11 +88,11 @@ class Admin::UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_admin_user
-      @admin_user = User.find(params[:id])
+      @admin_user = Admin::User.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def admin_user_params
-      params.require(:user).permit(:email, :user_type, user_departments_attributes: [:id, :user_id, :author_id, :_destroy])
+      params.require(:admin_user).permit(:email, :user_type, :password, :password_confirmation, user_departments_attributes: [:id, :user_id, :author_id, :_destroy])
     end
 end

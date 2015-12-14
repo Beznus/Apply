@@ -20,10 +20,14 @@ class User < ActiveRecord::Base
     self.user_type == "admin"
   end
 
+  def department?
+    self.user_type == "department"
+  end
+
   def permitted_applications
     if self.user_type == "admin"
       return UserApplication.all
-    elsif self.user_type == "departments" 
+    elsif self.user_type == "department" 
       return self.admin_applications
     else
       return nil
