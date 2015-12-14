@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :user_departments, allow_destroy: true
 
   USER_TYPES = %w[admin department applicant]
+
+  def generate_password
+    secure_password = SecureRandom.hex(8)
+  end
   
   def admin?
     self.user_type == "admin"

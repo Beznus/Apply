@@ -1,0 +1,12 @@
+<%= simple_form_for @user_department, url: save_user_department_admin_user_path(id: @user_department.user.id), method: :post do |f| %>
+  <%= "Add deparment for #{@user_department.user.email}" %>
+  <div class="form-inputs">
+    <%= f.input :user_id, as: :hidden, input_html: { id: @user_department.user_id } %>
+    <%= f.input :author_id, as: :select, collection: Author.all.map{|a| [a.name, a.id]}, include_blank: false %>
+  </div>
+  <div class="form-actions">
+    <%= f.submit class: "btn"%><br><br><br>
+  </div>
+<% end %>
+
+

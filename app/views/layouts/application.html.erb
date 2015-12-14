@@ -37,6 +37,8 @@
               <li><%= link_to "Manage Users", admin_users_path %></li>
               <li><%= link_to "Manage Applications", admin_user_applications_path %></li>
              <% end %>
+             <li role="separator" class="divider"></li>
+             <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
           </ul>
         </li>
         <% else %>
@@ -49,6 +51,8 @@
   <div class="container">
     <p id="notice"><%= notice %></p>
     <%= yield %>
+  </div>
+  <div class="footer">
   </div>
 </body>
 </html>

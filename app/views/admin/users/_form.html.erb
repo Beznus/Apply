@@ -1,18 +1,17 @@
-<%= simple_form_for( @admin_user, url: admin_user_path(id: @admin_user.id)) do |f| %>
+<%= simple_form_for( @admin_user, url: @path ) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :email %>
     <%= f.input :user_type, as: :select, collection: User::USER_TYPES, include_blank: false %>
 
-
-    <%= link_to "Add New Department", new_user_department_admin_user_path(id: @admin_user.id), remote: true %>  
-    <% @admin_user.user_departments.each do |department| %>
-      <%= f.simple_fields_for department do |ff| %>
+    <% if f.object.persisted? %>
+    <%= link_to "Add New Department", new_user_department_admin_user_path(id: @admin_user.id) %>  
+    <%= f.simple_fields_for :user_departments do |ff| %>
         <div class="departments">
           <%= render 'admin/users/department_fields', ff: ff %>
         </div>
-      <% end %>
+    <% end %>
     <% end %>
   </div>
 

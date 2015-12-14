@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :users do
       member do
         get :new_user_department
+        post :save_user_department
       end
     end
     resources :user_applications
