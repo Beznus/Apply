@@ -1,10 +1,12 @@
-<%= simple_form_for( @admin_user, url: @path ) do |f| %>
+<%= simple_form_for( @admin_user ) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :email %>
     <%= f.input :user_type, as: :select, collection: User::USER_TYPES, include_blank: false %>
-
+    <%= f.input :password, as: :password, hint: 
+        "leave blank if you don't want to change password (Edit) or want to assign a secure random password to user (New)" %>
+    <%= f.input :password_confirmation, as: :password %>
     <% if f.object.persisted? %>
     <%= link_to "Add New Department", new_user_department_admin_user_path(id: @admin_user.id) %>  
     <%= f.simple_fields_for :user_departments do |ff| %>

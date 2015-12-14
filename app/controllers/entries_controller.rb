@@ -10,7 +10,7 @@ class EntriesController < ApplicationController
     @author_id = params[:search][:author_id] if params[:search]
     @text = params[:search][:text] if params[:search]
     @q = Entry.search(@q, @text) if !@text.blank?
-    @q = Entry.where(author_id: params[:search][:author_id]) if !@author_id.blank?
+    @q = @q.where(author_id: params[:search][:author_id]) if !@author_id.blank?
 
     #final result and column toggle sort
     @entries = @q.paginate(:page => params[:page], :per_page => 30).includes(:author).order(sort_column + " " + sort_direction)

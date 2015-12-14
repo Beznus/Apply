@@ -12,5 +12,7 @@ Rails.application.routes.draw do
       end
     end
     resources :user_applications
+    get 'import_info', to: 'import#import_info'
+    get 'import', to: 'import#import'
   end
 end

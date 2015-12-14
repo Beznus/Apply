@@ -36,9 +36,13 @@
               <li role="separator" class="divider"></li>
               <li><%= link_to "Manage Users", admin_users_path %></li>
               <li><%= link_to "Manage Applications", admin_user_applications_path %></li>
-             <% end %>
-             <li role="separator" class="divider"></li>
-             <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+              <li><%= link_to "Import Postings", admin_import_info_path %></li>
+            <% elsif current_user.department? %>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to "Manage Applications", admin_user_applications_path %></li>
+            <% end %>
+            <li role="separator" class="divider"></li>
+            <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
           </ul>
         </li>
         <% else %>
@@ -49,8 +53,12 @@
   </div><!-- /.container-fluid -->
 </nav>
   <div class="container">
-    <p id="notice"><%= notice %></p>
-    <%= yield %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <p id="notice"><%= notice %></p>
+        <%= yield %>
+      </div>
+    </div>
   </div>
   <div class="footer">
   </div>
