@@ -23,7 +23,7 @@ class UserApplicationsController < ApplicationController
   # POST /user_applications.json
   def create
     @user_application = current_user.user_applications.new(user_application_params)
-
+    @entry = Entry.find(@user_application.entry.id)
     respond_to do |format|
       if @user_application.save
         format.html { redirect_to user_application_path(id: @user_application, entry_id: @user_application.entry.id), notice: 'Application was successfully created.' }
