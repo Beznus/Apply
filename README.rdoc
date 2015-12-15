@@ -1,28 +1,11 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Basic app that takes job postings using the Import class and import entries and authors.
 
-Things you may want to cover:
+This app uses devise for users, anyone can create an account and apply for job postings.
 
-* Ruby version
+Users can sort through job postings searching by keyworks and by department, as well as sort columns by asc and desc values.
 
-* System dependencies
+Admins can manage users, postings, and import postings from the admin interface.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Deparments can review applications and move them through the process.
